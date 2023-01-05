@@ -1,0 +1,16 @@
+trigger:
+- master 
+- feature/*
+
+steps:
+# Prepare Analysis Configuration task
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'SonarQube'
+    scannerMode: 'Other'
+    extraProperties: 'sonar.projectKey=AzureDemoSonar'
+
+# Publish Quality Gate Result task
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
